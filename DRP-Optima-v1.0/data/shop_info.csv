@@ -1,4 +1,0 @@
-shop_code,shop_name,format_name,is_community_pharmacy,is_DTP_pharmacy,is_campus_store,is_park_store,is_target_store,is_business_district,门店面积
-STORE_0,Test Store 0,standard,1,0,0,0,0,0,100
-STORE_1,Test Store 1,standard,1,0,0,0,0,0,110
-STORE_2,Test Store 2,standard,1,0,0,0,0,0,120
