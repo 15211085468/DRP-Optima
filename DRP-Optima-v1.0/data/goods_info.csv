@@ -1,0 +1,6 @@
+goods_code,goods_name,category_l1,category_l2,category_l3,generic_name,剂型名称
+SKU_0,Test Drug 0,中成药,感冒用药,感冒灵,感冒灵颗粒,颗粒剂
+SKU_1,Test Drug 1,化学药,抗生素,青霉素,阿莫西林,胶囊剂
+SKU_2,Test Drug 2,中药材,滋补类,人参,人参片,饮片
+SKU_3,Test Drug 3,中成药,止咳药,止咳糖浆,止咳糖浆,糖浆剂
+SKU_4,Test Drug 4,化学药,消炎药,头孢,头孢克肟,胶囊剂

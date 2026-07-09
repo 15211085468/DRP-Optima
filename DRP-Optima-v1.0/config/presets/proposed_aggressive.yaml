@@ -1,0 +1,43 @@
+# 预设模式：proposed_aggressive（激进满足率版）
+# 用途：专门优化订单满足率至95%+，使用更激进的奖励参数
+
+env:
+  # 基础成本参数（极度激进设置）
+  holding_cost_per_unit_weekly: 0.3        # 🔥 降低持有成本（鼓励备货）
+  shortage_penalty_per_unit: 15.0          # 🔥🔥🔥 极度严惩缺货（持有成本的50倍）
+  fixed_cost_per_order: 3.0                # 🔥 大幅鼓励多订货（降低固定成本）
+  
+  # 高级特性开关（全部开启）
+  enable_abc_reward: true
+  enable_pbrs: true
+  enable_constraints: true
+  use_dynamic_normalization: true
+  enable_service_level_bonus: true
+
+  # 🔥 新增：安全库存参数
+  safety_stock_factor: 2.33                # 🔥 99%服务水平（z=2.33）
+  min_service_level: 0.95                  # 🔥 最低满足率要求
+
+ppo:
+  # 训练参数（大幅增加）
+  total_timesteps: 1000000                 # 🔥 100万步（确保收敛）
+  ent_coef: 0.08                           # 🔥 增加探索（避免局部最优）
+  
+  # 学习率（调低，稳定训练）
+  policy_lr: 1e-4                          # 🔥 降低学习率（精细调优）
+  batch_size: 128                          # 🔥 增大批次（稳定梯度）
+  n_steps: 4096                            # 🔥 增大采样步数
+  
+  # PPO 参数
+  n_epochs: 15                             # 🔥 增加训练轮数
+  gamma: 0.995                             # 🔥 更接近1（长期奖励更重要）
+  gae_lambda: 0.97
+  clip_range: 0.15                         # 🔥 减小clip范围（保守更新）
+  vf_coef: 0.3                             # 🔥 降低价值函数权重
+  max_grad_norm: 0.3
+
+# 🔥 新增：课程学习（渐进式难度）
+curriculum:
+  stage_1_timesteps: 200000                # 阶段1：简单场景（低需求波动）
+  stage_2_timesteps: 300000                # 阶段2：中等场景
+  stage_3_timesteps: 500000                # 阶段3：复杂场景（高需求波动）

@@ -1,0 +1,33 @@
+# DRP-Optima 评估配置示例
+# 使用方法: python main.py evaluate --config config/evaluate.yaml
+
+# ========= 路径配置 =========
+paths:
+  project_root: "."
+  model_path: "models/tft_model_best.ckpt"
+  ppo_model_path: "models/ppo_model.zip"
+  data_path: "C:/OuNingyi/21级工程管理欧宁益/论文基础数据/main.csv"
+  inventory_path: "C:/OuNingyi/21级工程管理欧宁益/论文基础数据/shop_stock.csv"
+  output_dir: "output/evaluation"
+
+# ========= 评估配置 =========
+evaluation:
+  sku_limit: 50
+  store_limit: 10
+  test_size: 0.2  # 测试集比例
+  metrics:
+    - "SMAPE"  # 对称平均绝对百分比误差
+    - "MAE"  # 平均绝对误差
+    - "RMSE"  # 均方根误差
+    - "MAPE"  # 平均绝对百分比误差
+    - "CDR"  # 满足率（Customer Demand Rate）
+    - "SOR"  # 库存周转率（Stockout Rate）
+    - "OFR"  # 超额库存率（Overstock Rate）
+
+# ========= 业务指标计算配置 =========
+business_metrics:
+  lead_time: 7
+  service_level_target: 0.95
+  holding_cost_rate: 0.01  # 持有成本率
+  stockout_cost_rate: 0.1  # 缺货成本率
+  overstock_cost_rate: 0.05  # 超额库存成本率

@@ -1,0 +1,23 @@
+# DRP-Optima 主程序配置示例
+# 使用方法: python main.py --config config/main.yaml
+
+# ========= 训练参数 =========
+train:
+  num_stores: 100  # 训练门店数（None 表示全部）
+  ppo_steps: 18250  # PPO 训练步数（默认约50个epoch）
+  output_dir: "./records/output"  # 输出目录
+
+# ========= 预测参数 =========
+predict:
+  model_path: "./records/output/tft_model"  # 模型路径
+  output_dir: "./records/output"  # 输出目录
+
+# ========= 评估参数 =========
+evaluate:
+  tft_model_path: "./records/output/tft_model"  # TFT 模型路径
+  ppo_model_path: "./records/output/ppo_model"  # PPO 模型路径
+  num_skus: 478  # SKU 数量
+
+# ========= 通用参数 =========
+general:
+  log_level: "INFO"  # 日志级别
