@@ -1,0 +1,26 @@
+# DRP-Optima 推理配置示例
+# 使用方法: python inference.py --config config/inference.yaml
+
+# ========= 路径配置 =========
+paths:
+  project_root: "."
+  model_path: "models/tft_model_best.ckpt"  # TFT模型路径
+  ppo_model_path: "models/ppo_model.zip"  # PPO模型路径（可选）
+  data_path: "C:/OuNingyi/21级工程管理欧宁益/论文基础数据/main.csv"
+  inventory_path: "C:/OuNingyi/21级工程管理欧宁益/论文基础数据/shop_stock.csv"
+  output_dir: "output/inference"
+
+# ========= 推理配置 =========
+inference:
+  sku_limit: 50  # SKU数量（需与训练时一致）
+  store_limit: 10  # 门店数量（需与训练时一致）
+  forecast_horizon: 7  # 预测 horizon（天）
+  num_samples: 100  # 采样次数（用于概率预测）
+  random_seed: 42
+
+# ========= 输出配置 =========
+output:
+  save_forecast_csv: true  # 是否保存预测结果CSV
+  save_forecast_plot: true  # 是否保存预测图表
+  plot_format: "png"  # 图表格式（png/pdf/svg）
+  plot_dpi: 150  # 图表DPI

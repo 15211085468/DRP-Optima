@@ -1,0 +1,33 @@
+# 预设模式：baseline（纯净基线）
+# 用途：消融实验基准，关闭所有高级特性
+
+env:
+  # 基础成本参数（温和设置）
+  holding_cost_per_unit_weekly: 0.5
+  shortage_penalty_per_unit: 2.0       # 温和惩罚
+  fixed_cost_per_order: 10.0
+  
+  # 高级特性开关（全部关闭）
+  enable_abc_reward: false              # ABC业务感知Reward
+  enable_pbrs: false                    # PBRS（势能函数奖励塑形）
+  enable_constraints: false             # ConstraintHandler（业务约束处理）
+  use_dynamic_normalization: false      # 动态Reward归一化
+  enable_service_level_bonus: false     # 满足率阶梯奖励
+
+ppo:
+  # 训练参数
+  total_timesteps: 100000
+  ent_coef: 0.01                        # 低探索（基线模型不需要太多探索）
+  
+  # 网络参数
+  policy_lr: 3e-4
+  batch_size: 64
+  n_steps: 2048
+  
+  # PPO 参数
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  vf_coef: 0.5
+  max_grad_norm: 0.5
